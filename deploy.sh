@@ -5,7 +5,7 @@ set -ex
 pushd workspace/kmcd.dev
     # Normal site
     make build
-    if diff --exclude=pagefind -q -r live live.old; then
+    if diff --exclude=pagefind --exclude=mastodon -q -r live live.old; then
         echo "no changes detected, do nothing"
     else
         echo "changes detected!"
@@ -15,7 +15,7 @@ pushd workspace/kmcd.dev
 
     # Future site
     make build-future
-    if diff -q -r --exclude=pagefind future future.old; then
+    if diff -q -r --exclude=pagefind --exclude=mastodon future future.old; then
         echo "no changes detected, do nothing"
     else
         echo "changes detected!"
